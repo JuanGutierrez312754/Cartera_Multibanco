@@ -1,12 +1,13 @@
 package com.itm.cartera_multibanco.service.impl;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.itm.cartera_multibanco.dao.CuentaBancariaDao;
 import com.itm.cartera_multibanco.model.CuentaBancaria;
 import com.itm.cartera_multibanco.service.CuentaBancariaService;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class CuentaBancariaServiceImpl implements CuentaBancariaService {
@@ -28,12 +29,12 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
     }
 
     @Override
-    public void actualizarSaldo(String numeroCuenta, BigDecimal saldo) {
-        cuentaDao.updateSaldo(numeroCuenta, saldo);
+    public void actualizarSaldo(String cuenta, BigDecimal saldo) {
+        cuentaDao.updateSaldo(cuenta, saldo);
     }
 
     @Override
-    public void eliminar(String numeroCuenta) {
-        cuentaDao.delete(numeroCuenta);
+    public void eliminar(String cuenta) {
+        cuentaDao.delete(cuenta);
     }
 }

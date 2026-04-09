@@ -1,3 +1,12 @@
+package com.itm.cartera_multibanco.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.itm.cartera_multibanco.model.Cartera;
+import com.itm.cartera_multibanco.service.CarteraService;
+
 @RestController
 @RequestMapping("/cartera")
 public class CarteraController {

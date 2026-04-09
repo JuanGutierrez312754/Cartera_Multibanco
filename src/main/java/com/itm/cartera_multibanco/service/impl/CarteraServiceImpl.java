@@ -1,3 +1,12 @@
+package com.itm.cartera_multibanco.service.impl;
+
+import java.math.BigDecimal;
+import org.springframework.stereotype.Service;
+
+import com.itm.cartera_multibanco.dao.CarteraDao;
+import com.itm.cartera_multibanco.model.Cartera;
+import com.itm.cartera_multibanco.service.CarteraService;
+
 @Service
 public class CarteraServiceImpl implements CarteraService {
 

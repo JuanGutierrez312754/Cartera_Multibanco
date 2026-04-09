@@ -1,3 +1,14 @@
+package com.itm.cartera_multibanco.controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.itm.cartera_multibanco.model.CuentaBancaria;
+import com.itm.cartera_multibanco.service.CuentaBancariaService;
+
 @RestController
 @RequestMapping("/cuentas")
 public class CuentaBancariaController {

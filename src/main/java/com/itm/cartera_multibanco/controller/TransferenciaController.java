@@ -1,3 +1,12 @@
+package com.itm.cartera_multibanco.controller;
+
+import java.math.BigDecimal;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.itm.cartera_multibanco.service.TransferenciaService;
+
 @RestController
 @RequestMapping("/transferencias")
 public class TransferenciaController {
