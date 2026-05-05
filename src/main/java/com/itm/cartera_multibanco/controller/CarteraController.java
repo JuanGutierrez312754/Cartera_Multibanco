@@ -26,13 +26,21 @@ public class CarteraController {
 
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody Cartera cartera) {
-        carteraService.crear(cartera);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Cartera creada");
+        Cartera creada = carteraService.crear(cartera);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creada);
     }
 
     @PutMapping("/{cedula}")
     public ResponseEntity<?> actualizar(@PathVariable String cedula, @RequestBody Cartera cartera) {
-        carteraService.actualizarSaldo(cedula, cartera.getSaldo());
-        return ResponseEntity.ok("Saldo actualizado.");
+        Cartera actualizada = carteraService.actualizarSaldo(cedula, cartera.getSaldo());
+        if (actualizada == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(actualizada);
+    }
+
+    @DeleteMapping("/{cedula}")
+    public ResponseEntity<?> eliminar(@PathVariable String cedula) {
+        boolean eliminado = carteraService.eliminar(cedula);
+        if (!eliminado) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok("Cartera eliminada.");
     }
 }

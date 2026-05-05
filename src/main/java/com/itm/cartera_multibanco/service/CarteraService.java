@@ -1,9 +1,11 @@
 package com.itm.cartera_multibanco.service;
 
 import com.itm.cartera_multibanco.model.Cartera;
+import java.math.BigDecimal;
 
 public interface CarteraService {
     Cartera obtenerPorCedula(String cedula);
-    void crear(Cartera cartera);
-    void actualizarSaldo(String cedula, java.math.BigDecimal saldo);
+    Cartera crear(Cartera cartera);
+    Cartera actualizarSaldo(String cedula, BigDecimal saldo);
+    boolean eliminar(String cedula); 
 }

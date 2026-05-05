@@ -7,4 +7,5 @@ public interface CarteraDao {
     Cartera findByCedula(String cedula);
     int save(Cartera cartera);
     int updateSaldo(String cedula, BigDecimal saldo);
+    int delete(String cedula);
 }

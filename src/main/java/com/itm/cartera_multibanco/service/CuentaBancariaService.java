@@ -7,7 +7,7 @@ import com.itm.cartera_multibanco.model.CuentaBancaria;
 
 public interface CuentaBancariaService {
     List<CuentaBancaria> listarPorCedula(String cedula);
-    void crear(CuentaBancaria cuenta);
-    void actualizarSaldo(String cuenta, BigDecimal saldo);
-    void eliminar(String cuenta);
+    CuentaBancaria crear(CuentaBancaria cuenta); 
+    CuentaBancaria actualizarSaldo(String cuenta, BigDecimal saldo);
+    boolean eliminar(String cuenta);
 }

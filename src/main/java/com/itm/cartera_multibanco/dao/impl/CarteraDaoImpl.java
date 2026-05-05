@@ -78,4 +78,19 @@ public class CarteraDaoImpl implements CarteraDao {
             throw new RuntimeException("Error actualizando saldo de cartera", e);
         }
     }
+
+    @Override
+public int delete(String cedula) {
+    String sql = "DELETE FROM cartera WHERE cedula = ?";
+
+    try (Connection conn = conexionBD.obtenerConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, cedula);
+        return ps.executeUpdate();
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Error eliminando cartera", e);
+    }
+    }
 }

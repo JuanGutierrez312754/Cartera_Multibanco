@@ -2,15 +2,13 @@ package com.itm.cartera_multibanco.controller;
 
 import java.util.List;
 
-
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.itm.cartera_multibanco.model.CuentaBancaria;
 import com.itm.cartera_multibanco.service.CuentaBancariaService;
-//comentario
+
 @RestController
 @RequestMapping("/cuentas")
 public class CuentaBancariaController {
@@ -28,19 +26,21 @@ public class CuentaBancariaController {
 
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody CuentaBancaria c) {
-        service.crear(c);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Cuenta creada");
+        CuentaBancaria creada = service.crear(c);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creada);
     }
 
     @PutMapping("/{cuenta}")
     public ResponseEntity<?> actualizar(@PathVariable String cuenta, @RequestBody CuentaBancaria c) {
-        service.actualizarSaldo(cuenta, c.getSaldo());
-        return ResponseEntity.ok("Saldo actualizado");
+        CuentaBancaria actualizada = service.actualizarSaldo(cuenta, c.getSaldo());
+        if (actualizada == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(actualizada);
     }
 
     @DeleteMapping("/{cuenta}")
     public ResponseEntity<?> eliminar(@PathVariable String cuenta) {
-        service.eliminar(cuenta);
-        return ResponseEntity.ok("Cuenta eliminada");
+        boolean eliminado = service.eliminar(cuenta);
+        if (!eliminado) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok("Cuenta eliminada.");
     }
 }

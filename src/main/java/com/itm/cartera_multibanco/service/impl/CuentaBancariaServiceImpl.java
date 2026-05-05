@@ -24,17 +24,19 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
     }
 
     @Override
-    public void crear(CuentaBancaria cuenta) {
+    public CuentaBancaria crear(CuentaBancaria cuenta) {
         cuentaDao.save(cuenta);
+        return cuenta;
     }
 
     @Override
-    public void actualizarSaldo(String cuenta, BigDecimal saldo) {
+    public CuentaBancaria actualizarSaldo(String cuenta, BigDecimal saldo) {
         cuentaDao.updateSaldo(cuenta, saldo);
+        return cuentaDao.findByCuenta(cuenta);  // retorna estado actualizado
     }
 
     @Override
-    public void eliminar(String cuenta) {
-        cuentaDao.delete(cuenta);
+    public boolean eliminar(String cuenta) {
+        return cuentaDao.delete(cuenta) > 0;
     }
 }

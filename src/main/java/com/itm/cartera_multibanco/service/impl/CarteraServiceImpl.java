@@ -22,12 +22,19 @@ public class CarteraServiceImpl implements CarteraService {
     }
 
     @Override
-    public void crear(Cartera cartera) {
+    public Cartera crear(Cartera cartera) {
         carteraDao.save(cartera);
+        return cartera;
     }
 
     @Override
-    public void actualizarSaldo(String cedula, BigDecimal saldo) {
+    public Cartera actualizarSaldo(String cedula, BigDecimal saldo) {
         carteraDao.updateSaldo(cedula, saldo);
+        return carteraDao.findByCedula(cedula);   // retorna el estado actualizado
+    }
+
+    @Override
+    public boolean eliminar(String cedula) {
+        return carteraDao.delete(cedula) > 0;
     }
 }
