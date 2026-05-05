@@ -2,24 +2,29 @@ package com.itm.cartera_multibanco.controller;
 
 import com.itm.cartera_multibanco.model.User;
 import com.itm.cartera_multibanco.service.UserService;
-
 import jakarta.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios") // Esta será la URL base: http://localhost:8080/usuarios
+@RequestMapping("/usuarios")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> obtenerUsuarios() {
         return userService.listarTodo();
+    }
+
+    @GetMapping("/{cedula}")
+    public User buscarPorCedula(@PathVariable String cedula) {
+        return userService.buscarPorCedula(cedula);
     }
 
     @PostMapping
@@ -27,13 +32,11 @@ public class UserController {
         return userService.crearUsuario(usuario);
     }
 
-    // 3. Endpoint para actualizar (PUT)
     @PutMapping("/{cedula}")
     public String actualizar(@PathVariable String cedula, @Valid @RequestBody User usuario) {
         return userService.actualizarUsuario(cedula, usuario);
     }
 
-    // 4. Endpoint para eliminar (DELETE)
     @DeleteMapping("/{cedula}")
     public String eliminar(@PathVariable String cedula) {
         return userService.eliminarUsuario(cedula);
